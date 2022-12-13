@@ -154,6 +154,17 @@ d3.csv("Final_dataset.csv").then(
             return d.frequency;
         })]);
 
+        svg_ele.append("text")
+                .attr("class", "y label")
+                .attr("text-anchor", "end")
+                .attr("y", -80)
+                .attr("x", -150)
+                .attr("dy", ".75em")
+                .attr("transform", "rotate(-90)")
+                .style("font-size", 20)
+                .style("font-style", "Lucida Console")
+                .text("Total Number Of Cases");
+
         var rect = svg_ele.selectAll(".bar")
             .data(result)
             .enter().append("rect")
@@ -168,7 +179,18 @@ d3.csv("Final_dataset.csv").then(
             .attr("height", function (d) {
                 return dimensions.boundedHeight - y(d.frequency);
             })
-            .transition()
+
+            .on('mouseenter', function (d) {
+                d3.select(this)
+                    //.transition()
+                    .attr("opacity", 0.5)
+                    .attr('width', x.bandwidth() + 5)
+                    .text(d.frequency)
+            })
+            .on("mouseleave", function (d) {
+                d3.select(this).attr("opacity", 1)
+                    .attr('width', x.bandwidth())
+            });
             //.on("mouseover", function() { d3.select(this).attr("fill", "red"); });
         // add the x Axis
         svg_ele.append("g")
@@ -193,6 +215,17 @@ d3.csv("Final_dataset.csv").then(
             y.domain([0, d3.max(result, function (d) {
                 return d.frequency;
             })]);
+            svg_ele.append("text")
+                    .attr("class", "y label")
+                    .attr("text-anchor", "end")
+                    .attr("y", -80)
+                    .attr("x", -150)
+                    .attr("dy", ".75em")
+                    .attr("transform", "rotate(-90)")
+                    .style("font-size", 20)
+                    .style("font-style", "Lucida Console")
+                    .text("Total Number Of Cases");
+
             var rect = svg_ele.selectAll(".bar")
                 .data(result)
                 .enter().append("rect")
@@ -200,13 +233,32 @@ d3.csv("Final_dataset.csv").then(
                 .attr("x", function (d) {
                     return x(d.letter);
                 })
+
+                .on('mouseenter', function (d) {
+                    d3.select(this)
+                        //.transition()
+                        .attr("opacity", 0.5)
+                        .attr('width', x.bandwidth() + 5)
+
+                    })
+
+                .on("mouseleave", function (d) {
+                    d3.select(this).attr("opacity", 1)
+                        .attr('width', x.bandwidth())
+                })
                 .attr("width", x.bandwidth())
                 .attr("y", function (d) {
                     return y(d.frequency);
                 })
+
+                .transition()
+                .ease(d3.easeLinear)
+                .duration(500)
+                .delay(function(d,i){ return i*20})
                 .attr("height", function (d) {
                     return dimensions.boundedHeight - y(d.frequency);
-                });
+                })
+                .style("fill", "rgb(250, 164, 102)");
 
             // add the x Axis
             svg_ele.append("g")
@@ -232,6 +284,17 @@ d3.csv("Final_dataset.csv").then(
                 y.domain([0, d3.max(new_result, function (d) {
                     return d.frequency;
                 })]);
+                svg_ele.append("text")
+                        .attr("class", "y label")
+                        .attr("text-anchor", "end")
+                        .attr("y", -80)
+                        .attr("x", -150)
+                        .attr("dy", ".75em")
+                        .attr("transform", "rotate(-90)")
+                        .style("font-size", 20)
+                        .style("font-style", "Lucida Console")
+                        .text("Total Number Of Cases");
+
                 var rect = svg_ele.selectAll(".bar")
                     .data(new_result)
                     .enter().append("rect")
@@ -243,9 +306,28 @@ d3.csv("Final_dataset.csv").then(
                     .attr("y", function (d) {
                         return y(d.frequency);
                     })
-                    .attr("height", function (d) {
-                        return dimensions.boundedHeight - y(d.frequency);
-                    });
+
+                    .on('mouseenter', function (d) {
+                        d3.select(this)
+                            //.transition()
+                            .attr("opacity", 0.5)
+                            .attr('width', x.bandwidth() + 5)
+
+                        })
+
+                    .on("mouseleave", function (d) {
+                        d3.select(this).attr("opacity", 1)
+                            .attr('width', x.bandwidth())
+                    })
+                .transition()
+                .ease(d3.easeLinear)
+                .duration(500)
+                .delay(function(d,i){ return i*20})
+                .attr("height", function (d) {
+                    return dimensions.boundedHeight - y(d.frequency);
+                })
+                    .style("fill", "rgb(250, 164, 102)");
+
 
                 // add the x Axis
                 svg_ele.append("g")
@@ -272,6 +354,17 @@ d3.csv("Final_dataset.csv").then(
             y.domain([0, d3.max(result1, function (d) {
                 return d.frequency;
             })]);
+            svg_ele.append("text")
+                    .attr("class", "y label")
+                    .attr("text-anchor", "end")
+                    .attr("y", -80)
+                    .attr("x", -150)
+                    .attr("dy", ".75em")
+                    .attr("transform", "rotate(-90)")
+                    .style("font-size", 20)
+                    .style("font-style", "Lucida Console")
+                    .text("Total Number Of Cases");
+
             var rect = svg_ele.selectAll(".bar")
                 .data(result1)
                 .enter().append("rect")
@@ -279,13 +372,34 @@ d3.csv("Final_dataset.csv").then(
                 .attr("x", function (d) {
                     return x(d.letter);
                 })
+
+                .on('mouseenter', function (d) {
+                    d3.select(this)
+                        //.transition()
+                        .attr("opacity", 0.5)
+                        .attr('width', x.bandwidth() + 5)
+
+                    })
+
+                .on("mouseleave", function (d) {
+                    d3.select(this).attr("opacity", 1)
+                        .attr('width', x.bandwidth())
+                })
                 .attr("width", x.bandwidth())
                 .attr("y", function (d) {
                     return y(d.frequency);
                 })
+                .transition()
+                .ease(d3.easeLinear)
+                .duration(500)
+                .delay(function(d,i){ return i*20})
                 .attr("height", function (d) {
                     return dimensions.boundedHeight - y(d.frequency);
-                });
+                })
+                .attr("height", function (d) {
+                    return dimensions.boundedHeight - y(d.frequency);
+                })
+                .style("fill", "rgb(129, 120, 222)");
 
             // add the x Axis
             svg_ele.append("g")
@@ -311,6 +425,17 @@ d3.csv("Final_dataset.csv").then(
                 y.domain([0, d3.max(new_result1, function (d) {
                     return d.frequency;
                 })]);
+                svg_ele.append("text")
+                        .attr("class", "y label")
+                        .attr("text-anchor", "end")
+                        .attr("y", -80)
+                        .attr("x", -150)
+                        .attr("dy", ".75em")
+                        .attr("transform", "rotate(-90)")
+                        .style("font-size", 20)
+                        .style("font-style", "Lucida Console")
+                        .text("Total Number Of Cases");
+
                 var rect = svg_ele.selectAll(".bar")
                     .data(new_result1)
                     .enter().append("rect")
@@ -322,9 +447,27 @@ d3.csv("Final_dataset.csv").then(
                     .attr("y", function (d) {
                         return y(d.frequency);
                     })
+                    .on('mouseenter', function (d) {
+                        d3.select(this)
+                            //.transition()
+                            .attr("opacity", 0.5)
+                            .attr('width', x.bandwidth() + 5)
+
+                        })
+
+                    .on("mouseleave", function (d) {
+                        d3.select(this).attr("opacity", 1)
+                            .attr('width', x.bandwidth())
+                    })
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(500)
+                    .delay(function(d,i){ return i*20})
                     .attr("height", function (d) {
                         return dimensions.boundedHeight - y(d.frequency);
-                    });
+                    })
+                    .style("fill", "rgb(129, 120, 222)");
+
 
                 // add the x Axis
                 svg_ele.append("g")
@@ -351,6 +494,17 @@ d3.csv("Final_dataset.csv").then(
             y.domain([0, d3.max(result2, function (d) {
                 return d.frequency;
             })]);
+            svg_ele.append("text")
+                    .attr("class", "y label")
+                    .attr("text-anchor", "end")
+                    .attr("y", -80)
+                    .attr("x", -150)
+                    .attr("dy", ".75em")
+                    .attr("transform", "rotate(-90)")
+                    .style("font-size", 20)
+                    .style("font-style", "Lucida Console")
+                    .text("Total Number Of Cases");
+
             var rect = svg_ele.selectAll(".bar")
                 .data(result2)
                 .enter().append("rect")
@@ -362,9 +516,26 @@ d3.csv("Final_dataset.csv").then(
                 .attr("y", function (d) {
                     return y(d.frequency);
                 })
+                .on('mouseenter', function (d) {
+                    d3.select(this)
+                        //.transition()
+                        .attr("opacity", 0.5)
+                        .attr('width', x.bandwidth() + 5)
+
+                    })
+
+                .on("mouseleave", function (d) {
+                    d3.select(this).attr("opacity", 1)
+                        .attr('width', x.bandwidth())
+                })
+                .transition()
+                .ease(d3.easeLinear)
+                .duration(500)
+                .delay(function(d,i){ return i*20})
                 .attr("height", function (d) {
                     return dimensions.boundedHeight - y(d.frequency);
-                });
+                })
+                .style("fill", "rgb(103, 184, 173)");
 
             // add the x Axis
             svg_ele.append("g")
@@ -390,6 +561,17 @@ d3.csv("Final_dataset.csv").then(
                 y.domain([0, d3.max(new_result2, function (d) {
                     return d.frequency;
                 })]);
+                svg_ele.append("text")
+                        .attr("class", "y label")
+                        .attr("text-anchor", "end")
+                        .attr("y", -80)
+                        .attr("x", -150)
+                        .attr("dy", ".75em")
+                        .attr("transform", "rotate(-90)")
+                        .style("font-size", 20)
+                        .style("font-style", "Lucida Console")
+                        .text("Total Number Of Cases");
+
                 var rect = svg_ele.selectAll(".bar")
                     .data(new_result2)
                     .enter().append("rect")
@@ -401,9 +583,27 @@ d3.csv("Final_dataset.csv").then(
                     .attr("y", function (d) {
                         return y(d.frequency);
                     })
+
+                    .on('mouseenter', function (d) {
+                        d3.select(this)
+                            //.transition()
+                            .attr("opacity", 0.5)
+                            .attr('width', x.bandwidth() + 5)
+
+                        })
+
+                    .on("mouseleave", function (d) {
+                        d3.select(this).attr("opacity", 1)
+                            .attr('width', x.bandwidth())
+                    })
+                .transition()
+                .ease(d3.easeLinear)
+                .duration(500)
+                .delay(function(d,i){ return i*20})
                     .attr("height", function (d) {
                         return dimensions.boundedHeight - y(d.frequency);
-                    });
+                    })
+                    .style("fill", "rgb(103, 184, 173)");
 
                 // add the x Axis
                 svg_ele.append("g")
@@ -428,6 +628,17 @@ d3.csv("Final_dataset.csv").then(
             y.domain([0, d3.max(result3, function (d) {
                 return d.frequency;
             })]);
+            svg_ele.append("text")
+                    .attr("class", "y label")
+                    .attr("text-anchor", "end")
+                    .attr("y", -80)
+                    .attr("x", -150)
+                    .attr("dy", ".75em")
+                    .attr("transform", "rotate(-90)")
+                    .style("font-size", 20)
+                    .style("font-style", "Lucida Console")
+                    .text("Total Number Of Cases");
+
             var rect = svg_ele.selectAll(".bar")
                 .data(result3)
                 .enter().append("rect")
@@ -439,9 +650,27 @@ d3.csv("Final_dataset.csv").then(
                 .attr("y", function (d) {
                     return y(d.frequency);
                 })
+
+                .on('mouseenter', function (d) {
+                    d3.select(this)
+                        //.transition()
+                        .attr("opacity", 0.5)
+                        .attr('width', x.bandwidth() + 5)
+
+                    })
+
+                .on("mouseleave", function (d) {
+                    d3.select(this).attr("opacity", 1)
+                        .attr('width', x.bandwidth())
+                })
+                .transition()
+                .ease(d3.easeLinear)
+                .duration(500)
+                .delay(function(d,i){ return i*20})
                 .attr("height", function (d) {
                     return dimensions.boundedHeight - y(d.frequency);
-                });
+                })
+                .style("fill", "rgb(137, 245, 153)");
 
             // add the x Axis
             svg_ele.append("g")
@@ -467,6 +696,17 @@ d3.csv("Final_dataset.csv").then(
                 y.domain([0, d3.max(new_result3, function (d) {
                     return d.frequency;
                 })]);
+                svg_ele.append("text")
+                        .attr("class", "y label")
+                        .attr("text-anchor", "end")
+                        .attr("y", -80)
+                        .attr("x", -150)
+                        .attr("dy", ".75em")
+                        .attr("transform", "rotate(-90)")
+                        .style("font-size", 20)
+                        .style("font-style", "Lucida Console")
+                        .text("Total Number Of Cases");
+
                 var rect = svg_ele.selectAll(".bar")
                     .data(new_result3)
                     .enter().append("rect")
@@ -478,9 +718,27 @@ d3.csv("Final_dataset.csv").then(
                     .attr("y", function (d) {
                         return y(d.frequency);
                     })
+
+                    .on('mouseenter', function (d) {
+                        d3.select(this)
+                            //.transition()
+                            .attr("opacity", 0.5)
+                            .attr('width', x.bandwidth() + 5)
+
+                        })
+
+                    .on("mouseleave", function (d) {
+                        d3.select(this).attr("opacity", 1)
+                            .attr('width', x.bandwidth())
+                    })
+                .transition()
+                .ease(d3.easeLinear)
+                .duration(500)
+                .delay(function(d,i){ return i*20})
                     .attr("height", function (d) {
                         return dimensions.boundedHeight - y(d.frequency);
-                    });
+                    })
+                  .style("fill", "rgb(137,245,153)")  ;
 
                 // add the x Axis
                 svg_ele.append("g")
