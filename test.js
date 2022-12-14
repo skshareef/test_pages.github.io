@@ -397,7 +397,7 @@ svg
           .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
           .text(function(d){ return d.data.value})
           .attr("font-size", "11px")
-          .attr("fill", "black")
+          .attr("fill", "red")
 
 
 
