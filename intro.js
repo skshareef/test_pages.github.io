@@ -6,7 +6,7 @@ function(data)
     console.log(data);
 
     var dimensions = {
-            width: 900,
+            width: 1200,
             height: 400,
             margin:{
                 top: 10,
@@ -56,7 +56,8 @@ function(data)
     .attr("transform", "rotate(-90)")
     .style("font-size",20)
     .style("font-style","Lucida Console")
-    .text("Total Number Of Cases");
+    .text("Total Number Of Cases")
+    .style("position","absolute")
 
       var changing_axis = SVG.append("g")
                               .attr("transform", "translate(-10,"+ dimensions.margin.top +")")
@@ -67,9 +68,10 @@ function(data)
                               .attr("class", "tooltip")
                               .style("background-color", "white")
                               .style("border", "solid")
-                              .style("border-width", "1px")
+                              .style("border-width", "2px")
                               .style("border-radius", "5px")
                               .style("padding", "10px")
+                              .style('font-size', '15px')
 
 
 
@@ -82,7 +84,7 @@ function(data)
 
                             const mousemove = function(event, d) {
                               tooltip
-                                .html("no of crimes in " +name_html+" in "+ d.year+ " : "+d[nameSelected])
+                                .html("No of  " +name_html+"  in "+ d.year+ " : "+d[nameSelected])
                                 .style("left", (event.x)/2 + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
                                 .style("top", (event.y)/2 + "px")
                             }
