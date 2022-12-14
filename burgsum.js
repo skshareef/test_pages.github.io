@@ -1,5 +1,5 @@
 var dimensions = {
-    width: 1000,
+    width: 1200,
     height: 400,
     margin: {
         top: 20,
