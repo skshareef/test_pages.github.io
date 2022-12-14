@@ -6,12 +6,12 @@ function(data)
     console.log(data);
 
     var dimensions = {
-            width: 1200,
+            width: 900,
             height: 400,
             margin:{
                 top: 10,
                 bottom: 21,
-                right: 10,
+                right: 40,
                 left: 90
               }
             }
@@ -32,9 +32,12 @@ function(data)
                 .domain(data.map(function(d){return d.year;}))
                 .range([ 0, dimensions.boundedWidth ]);
 
-      var xAxis = SVG.append("g")
+     var xAxis = SVG.append("g")
                       .attr("transform", "translate(0," + (dimensions.boundedHeight+dimensions.margin.bottom) + ")")
-                      .call(d3.axisBottom(x));
+                      .call(d3.axisBottom(x))
+
+
+
 
 
 
@@ -43,7 +46,7 @@ function(data)
                 .range([ dimensions.boundedHeight, 0]);
       var yAxis = d3.axisLeft(y)
 
-
+//y -axis label
       SVG.append("text")
     .attr("class", "y label")
     .attr("text-anchor", "end")
@@ -58,14 +61,39 @@ function(data)
       var changing_axis = SVG.append("g")
                               .attr("transform", "translate(-10,"+ dimensions.margin.top +")")
                               .call(yAxis)
-      var text = SVG.append('text')
-                      .attr("id", 'topbartext')
-                      .attr("x", 700)
-                      .attr("y", 20)
-                      .attr("dx", "-.8em")
-                      .attr("dy", ".15em")
-                      .attr("font-family", "sans-serif")
-                      .text("Count per year: 0")
+    const tooltip = d3.select("#main")
+                              .append("div")
+                              .style("opacity", 1)
+                              .attr("class", "tooltip")
+                              .style("background-color", "white")
+                              .style("border", "solid")
+                              .style("border-width", "1px")
+                              .style("border-radius", "5px")
+                              .style("padding", "10px")
+
+
+
+                            // A function that change this tooltip when the user hover a point.
+                            // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
+                            const mouseover = function(event, d) {
+                              tooltip
+                                .style("opacity", 1)
+                            }
+
+                            const mousemove = function(event, d) {
+                              tooltip
+                                .html("no of crimes in " +name_html+" in "+ d.year+ " : "+d[nameSelected])
+                                .style("left", (event.x)/2 + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+                                .style("top", (event.y)/2 + "px")
+                            }
+
+                            // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+                            const mouseleave = function(event,d) {
+                              tooltip
+                                .transition()
+                                .duration(200)
+                                .style("opacity", 0)
+                            }
       var dots=  SVG.append("g")
                     .selectAll("circle")
                     .data(data)
@@ -76,16 +104,9 @@ function(data)
                     .attr("r", 8)
                     .style("fill", "#61a3a9")
                     .style("opacity", 1.5)
-                    .on("mouseover", function(d, i){
-                      d3.select(this)
-                        .attr("stroke-width", "2")
-                        .attr("stroke", "black")
-                        text.text("No of "+ name_html+" : " + d[nameSelected]+" in year "+(i+1975))
-                      })
-                    .on("mouseout", function(d){
-                      d3.select(this)
-                        .attr("stroke-width", "0")
-                      })
+                    .on("mouseover", mouseover )
+    .on("mousemove", mousemove )
+    .on("mouseleave", mouseleave )
 //Button 1
         d3.select("#Burgalary_sum").on('click', function(){
                      nameSelected = "Burgalary_sum"
