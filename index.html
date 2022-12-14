@@ -2,13 +2,9 @@
 <html>
 <head>
 	<title>UCR CRIME DATA</title>
-	<meta charset="utf-8">
 
-
-	<script src="https://d3js.org/d3.v6.js"></script>
 	<script src="https://d3js.org/d3.v7.min.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js" integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://d3js.org/d3.v6.js"></script>
 
 
 
@@ -29,35 +25,46 @@ float: justify;
 }
 
 body {
-  zoom: 90%;
+  zoom: 60%;
 }
 </style>
 
 
-<a href="tindex.html">
-	<button type="button">Home</button></a>
-
+	<a href="tindex.html">
+			<button type="button">Home</button></a>
+		</br>
 
 <button type="button" id="Burgalary_sum" style="margin:5px;">Burgalary_sum</button>
-<button type="button" id="Rape_sum" style="margin:5px;">Rape_sum</button>
-<button type="button" id="Robbery_sum" style="margin:5px;">Robbery_sum</button>
-<button type="button" id="Aggressive_sum" style="margin:5px;">Aggressive_sum</button>
+		<button type="button" id="Rape_sum" style="margin:5px;">Rape_sum</button>
+		<button type="button" id="Robbery_sum" style="margin:5px;">Robbery_sum</button>
+		<button type="button" id="Aggressive_sum" style="margin:5px;">Aggressive_sum</button>
 
-<div id="main">
-<svg id="map1" ></svg>
-<script src="intro.js"></script>
-</div>
+		<div id="main">
+	<svg id="map1" ></svg>
+			<script src="intro.js"></script>
+		</div>
+
+
 
 <div>
 	<button type="button" id="Burgalary_sum1" style="margin:5px;">Burgalary_sum</button>
-	<button type="button" id="Rape_sum1" style="margin:5px;">Rape_sum</button>
-	<button type="button" id="Robbery_sum1" style="margin:5px;">Robbery_sum</button>
-	<button type="button" id="Aggressive_sum1" style="margin:5px;">Aggressive_sum</button>
+			<button type="button" id="Rape_sum1" style="margin:5px;">Rape_sum</button>
+				<button type="button" id="Robbery_sum1" style="margin:5px;">Robbery_sum</button>
+				<button type="button" id="Aggressive_sum1" style="margin:5px;">Aggressive_sum</button>
+
 </div>
+
 <div>
-<svg id="map" width=1300, height=400 ></svg>
-		<script src="test.js"></script>
+<svg id="map" width=1000, height=400 ></svg>
+		<script src="graph2.js"></script>
 </div>
+
+
+
+
+</br>
+
+
 
 
 <button type="button" id="Burgalary_sum4" style="margin:5px;">Burgalary</button>
@@ -71,20 +78,24 @@ body {
 <script src="demmm.js"></script>
 </div>
 
-
-
 <div >
     <button type="button"  class="btn btn-outline-secondary" id="Burgalary_sum2"
         style="margin:5px;  ">Burgalary_sum</button>
     <button type="button" class="btn btn-outline-secondary" id="Rape_sum2" style="margin:5px;">Rape_sum</button>
     <button type="button" class="btn btn-outline-secondary" id="Robbery_sum2" style="margin:5px;">Robbery_sum</button>
     <button type="button" class="btn btn-outline-secondary" id="Aggressive_sum2" style="margin:5px;">Aggressive_sum</button>
-		<button type="button" class="btn btn-outline-secondary" id="sort" style="margin:5px;">Togglesort</button>
+		<button type="button" class="btn btn-outline-secondary" id="sort" style="margin:5px;">Toggle
+				sort</button>
 </div>
-
 <div id="map2"  width=1100 , height=400>
-<script src="burgsum.js"></script>
-</div>
+
+		  <script src="burgsum.js"></script>
+
+	</div>
+
+
+
+
 
 
 
