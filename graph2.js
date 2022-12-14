@@ -269,7 +269,7 @@ let tooltip = d3
       .attr('width', function (d) { return d.x1 - d.x0; })
       .attr('height', function (d) { return d.y1 - d.y0; })
       .style("stroke", "black")
-      .style("fill", "#46019b")
+      .style("fill", "#FF4B33 ")
       .on('mouseover', function() {
      tooltip.style('visibility', 'visible');
    })
@@ -379,7 +379,7 @@ let tooltip = d3
       .attr('width', function (d) { return d.x1 - d.x0; })
       .attr('height', function (d) { return d.y1 - d.y0; })
       .style("stroke", "black")
-      .style("fill", "#46019b")
+      .style("fill", "#5BFF33")
       .on('mouseover', function() {
      tooltip.style('visibility', 'visible');
    })
@@ -490,7 +490,7 @@ let tooltip = d3
       .attr('width', function (d) { return d.x1 - d.x0; })
       .attr('height', function (d) { return d.y1 - d.y0; })
       .style("stroke", "black")
-      .style("fill", "#46019b")
+      .style("fill", "#fef601")
       .on('mouseover', function() {
      tooltip.style('visibility', 'visible');
    })
@@ -515,7 +515,7 @@ svg
           .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
           .text(function(d){ return d.data.value})
           .attr("font-size", "11px")
-          .attr("fill", "white")
+          .attr("fill", "black")
 
 
 
